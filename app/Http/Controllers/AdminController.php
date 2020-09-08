@@ -367,4 +367,29 @@ class AdminController extends Controller
 
         return redirect()->route('manage-portal');
     }
+
+    public function edit_portal($id)
+    {
+        $portal = Oex_portal::find($id);
+
+        return view('admin.edit_portal')->with('portal',$portal);
+    }
+
+    public function update_portal(Request $request)
+    {
+        $data = Oex_portal::find($request->id);
+        
+        $data->name = $request->name;
+
+        $data->email = $request->email;
+
+        $data->mobile_no = $request->mobile_no;
+
+        $data->password = $request->password;
+
+        $data->save();
+
+        echo json_encode(array('status'=>'true','message'=>'Portal Update Successfully','reload'=>route('manage-portal')));
+    }
+
 }

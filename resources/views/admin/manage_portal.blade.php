@@ -67,7 +67,7 @@
                                     @endif
                                   </td>
                                   <td>
-                                    <a href="" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="{{ route('edit-portal',$portal->id) }}" class="btn btn-info btn-sm">Edit</a>
                                     <a href="{{ route('delete-portal',$portal->id) }}" class="btn btn-danger btn-sm">Delete</a>
                                   </td>
                                </tr>
