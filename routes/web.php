@@ -89,3 +89,13 @@ route::post('/portal/singup_sub','PortalController@portal_singup_sub')->name('po
 route::get('/portal/login','PortalController@portal_login')->name('portal-login');
 
 route::post('/portal/login_sub','PortalController@portal_login_sub')->name('portal-login-sub');
+
+route::get('/portal/dashboard','PortalOperation@dashboard')->name('portal-dashboard');
+
+route::get('/portal/exam/form/{id}','PortalOperation@exam_form')->name('portal-exam-form');
+
+route::post('/portal/exam/form/submit','PortalOperation@exam_form_submit')->name('portal-exam-form-submit');
+
+route::get('/portal/print/{id}','PortalOperation@portal_print')->name('portal-print');
+
+

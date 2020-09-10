@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use App\Oex_portal;
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PortalController extends Controller
 {
     public function portal_singup()
     {
+        if($session_data = Session::get('portal_session'))
+        {
+            return redirect()->route('portal-dashboard');
+        }
             return view('portal.singup');
     }
 
@@ -60,6 +65,10 @@ class PortalController extends Controller
 
     public function portal_login()
     {
+        if($session_data = Session::get('portal_session'))
+       {
+           return redirect()->route('portal-dashboard');
+       }
       return view('portal.login');
     }
 
@@ -70,7 +79,8 @@ class PortalController extends Controller
         {
             if($portal[0]['status']==1)
             {
-                $arr = array('status'=>'true','message'=>'success','reload'=>route('admin'));
+                $request->session()->put('portal_session',$portal[0]['id']);
+                $arr = array('status'=>'true','message'=>'success','reload'=>route('portal-dashboard'));
             }
             else
             {
