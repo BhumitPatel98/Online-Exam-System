@@ -25,9 +25,11 @@ class PortalOperation extends Controller
 
     public function exam_form($id)
     {
-        $exams = Oex_exam_master::where('id',$id)->get();
+        $exams = Oex_exam_master::where('id',$id)->get()->first();
 
-        return view('portal.exam_form')->with('exams',$exams);
+        $students = Oex_students::where('oex_exam_masters_id',$id)->get();
+
+        return view('portal.exam_form')->with('exams',$exams)->with('students',$students);
     }
 
     public function exam_form_submit(Request $request)
@@ -55,7 +57,7 @@ class PortalOperation extends Controller
             
             
         ])->id;
-        $arr = array('status'=>'true','message'=>'success','reload'=>route('portal-print',$data));
+            $arr = array('status'=>'true','message'=>'success','reload'=>route('portal-print',$data));
         }
         else
         {
@@ -69,5 +71,44 @@ class PortalOperation extends Controller
         $students = Oex_students::find($id);
 
         return view('portal.print')->with('students',$students);
+    }
+
+    public function portal_edit_form($id)
+    {
+        $data = Oex_students::find($id);
+
+        return view('portal.update_form')->with('data',$data);
+    }
+
+    public function portal_update_form(Request $request ,$id)
+    {
+            $data = Oex_students::find($id);
+
+            $data->name = $request->name;
+
+            $data->email = $request->email;
+
+            $data->mobile_no = $request->mobile_no;
+
+            $data->dob = $request->dob;
+
+            $data->password = $request->password;
+
+            $data->update();
+
+            $exams = Oex_exam_master::where('id',$id)->get()->first();
+
+            // return view('portal.exam_form')->with('exams',$exams);
+
+            //return redirect()->view('portal-exam-form',$id);
+    
+            echo json_encode(array('status'=>'true','message'=>'Update Successfully','reload'=>route('portal-exam-form',$request->id)));
+    }
+
+    public function portal_logout(Request $request)
+    {
+        $request->session()->forget('portal_session');
+
+        return redirect()->route('portal-login');
     }
 }

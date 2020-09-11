@@ -98,4 +98,23 @@ route::post('/portal/exam/form/submit','PortalOperation@exam_form_submit')->name
 
 route::get('/portal/print/{id}','PortalOperation@portal_print')->name('portal-print');
 
+route::get('/portal/edit/form/{id}','PortalOperation@portal_edit_form')->name('portal-edit-form');
+
+route::post('/portal/update/form/{id}','PortalOperation@portal_update_form')->name('portal-update-form');
+
+route::get('/portal/logout','PortalOperation@portal_logout')->name('portal-logout');
+
+
+/** Student */
+
+route::get('/student/singup','StudentController@student_singup')->name('student-singup');
+
+route::post('/student/login_sub','StudentController@student_login_sub')->name('student-login-sub');
+
+route::get('/student/dashboard','StudentOperation@dashboard')->name('student-dashboard');
+
+route::get('/student/logout','StudentOperation@logout')->name('student-logout');
+
+route::get('/student/exam','StudentOperation@student_exam')->name('student-exam');
+
 

@@ -65,6 +65,9 @@
                 <button onclick="window.print()">Print</button>
             </div>
 
+            <div class="print-btn">
+                <a href= {{url('/portal/dashboard')}} >Home</a>
+            </div>
         </div>
 
     </div>

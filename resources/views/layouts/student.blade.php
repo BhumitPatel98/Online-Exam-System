@@ -178,7 +178,7 @@
 
 
             <li class="nav-item">
-              <a href="{{ route('portal-dashboard') }}" class="nav-link">
+              <a href="{{ route('student-dashboard') }}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboad
@@ -187,7 +187,16 @@
             </li>
 
             <li class="nav-item">
-              <a href="{{route('portal-logout')}}" class="nav-link">
+                <a href="{{route('student-exam')}}" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Exam
+                  </p>
+                </a>
+              </li>
+
+            <li class="nav-item">
+              <a href="{{route('student-logout')}}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Logout
